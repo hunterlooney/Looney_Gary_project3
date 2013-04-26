@@ -70,7 +70,6 @@ var getTheData = function () {
 		makeLinksButtons (localStorage.key(i), links);
 	}
 };
-
 function makeLinksButtons (key, links) {
 	var editTheLink = document.createElement('a');
 	editTheLink.href = "#";
@@ -92,7 +91,6 @@ function makeLinksButtons (key, links) {
 	links.appendChild(deleteTheLink);
 	
 }
-
 function deleteTheItem () {
 	var askQuestion = confirm("Are you sure you want to delete this character?");
 	if(askQuestion) {
@@ -102,7 +100,6 @@ function deleteTheItem () {
 		alert("Character was NOT deleted.")
 	}
 }
-
 function editTheItem () {
 	var value = localStorage.getItem(this.key);
 	var item = JSON.parse(value);
@@ -131,25 +128,21 @@ function editTheItem () {
 	editTheSubmit.key = this.key;
 	
 }
-
-
 function validate (event) {
-	var getTHEcname = ('cname');
-
-	var messageArray = [];
-
+	var errorMessage = [];
+	
+	var getTHEcname = cname;	
 	if(getTHEcname.value === ""){
 		var cnameError = "Please enter a character name.";
 		getTHEcname.style.border = "1px solide red";
-		messageArray.push(cnameError);
+		errorMessage = cnameError;
 	}
 	
-	if(messageArray.length >= 1) {
-		for (var i = 0, j = messageArray.length; i< j; i++){
+	if(errorMessage.length >= 1) {
+		for (var i = 0, j = errorMessage.length; i< j; i++){
 			var errorText = document.createElement('li');
-			errorText.innerHTML = messageArray[i];
-			errorMessage.appendChild(errorText);
-			 
+			errorText.innerHTML = errorMessage[i];
+			errorMessageTwo.appendChild(errorText);
 		}
 		event.preventDefault();
 		return false;	
@@ -159,8 +152,7 @@ function validate (event) {
 }
 
 var displayButton = document.getElementById('displayButton');
-var errorMessage = ('error');
-
+var errorMessageTwo = ('error');
 
 clearButton.addEventListener("click", clearData);
 displayButton.addEventListener("click", getTheData);
